@@ -37,15 +37,12 @@
                             <td>{{ $product->price }}</td>
                             <td>{!! $product->description !!}</td>
                             <td>
-                                <form action="{{ route('products.destroy', $product->id) }}" method="post">
+                                <form onsubmit="return confirm('Do you want to delete this product?');" action="{{ route('products.destroy', $product->id) }}" method="post">
+                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
+                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>   
                                     @csrf
                                     @method('DELETE')
-
-                                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
-
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>   
-
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash" onclick="return confirm('Do you want to delete this product?');"></i> Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</button>
                                 </form>
                             </td>
                         </tr>
